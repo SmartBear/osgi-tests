@@ -19,6 +19,7 @@
         <paxExamVersion>3.4.0</paxExamVersion>
         <felixVersion>4.0.2</felixVersion>
         <jerseyVersion>1.18.1</jerseyVersion>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <build>

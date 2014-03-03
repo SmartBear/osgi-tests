@@ -14,8 +14,7 @@ import javax.inject.Inject;
 
 import static com.smartbear.osgi.tests.OsgiTestUtils.assertAllBundlesActive;
 import static com.smartbear.osgi.tests.OsgiTestUtils.springDmBundles;
-import static org.ops4j.pax.exam.CoreOptions.junitBundles;
-import static org.ops4j.pax.exam.CoreOptions.systemPackages;
+import static org.ops4j.pax.exam.CoreOptions.*;
 
 @RunWith( PaxExam.class )
 @ExamReactorStrategy( PerClass.class )
@@ -38,7 +37,10 @@ public class EnvironmentTest
 						"sun.io",
 						"sun.misc" ),
 				springDmBundles(),
-				junitBundles()
+				junitBundles(),
+				mavenBundle( "osgi-tests", "test-api" ).versionAsInProject(),
+				mavenBundle( "osgi-tests", "producer" ).versionAsInProject(),
+				mavenBundle( "osgi-tests", "consumer" ).versionAsInProject()
 		);
 	}
 

@@ -32,6 +32,21 @@
 
     <dependencies>
         <dependency>
+            <groupId>osgi-tests</groupId>
+            <artifactId>test-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>osgi-tests</groupId>
+            <artifactId>producer</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>osgi-tests</groupId>
+            <artifactId>consumer</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.11</version>
