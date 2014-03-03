@@ -9,17 +9,17 @@ import org.ops4j.pax.exam.junit.PaxExam;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
 import org.ops4j.pax.exam.spi.reactors.PerClass;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceReference;
 
 import javax.inject.Inject;
-
 import java.util.Hashtable;
 
 import static com.smartbear.osgi.tests.OsgiTestUtils.assertAllBundlesActive;
 import static com.smartbear.osgi.tests.OsgiTestUtils.springDmBundles;
 import static org.ops4j.pax.exam.CoreOptions.*;
 
-@RunWith( PaxExam.class )
-@ExamReactorStrategy( PerClass.class )
+@RunWith(PaxExam.class)
+@ExamReactorStrategy(PerClass.class)
 public class EnvironmentTest
 {
 
@@ -38,11 +38,11 @@ public class EnvironmentTest
 						"javax.transaction.xa",
 						"sun.io",
 						"sun.misc" ),
-				springDmBundles(),
-				junitBundles(),
 				mavenBundle( "osgi-tests", "test-api" ).versionAsInProject(),
 				mavenBundle( "osgi-tests", "producer" ).versionAsInProject(),
-				mavenBundle( "osgi-tests", "consumer" ).versionAsInProject()
+				mavenBundle( "osgi-tests", "consumer" ).versionAsInProject(),
+				springDmBundles(),
+				junitBundles()
 		);
 	}
 
@@ -51,6 +51,11 @@ public class EnvironmentTest
 		context.registerService( serviceClass, service, properties );
 	}
 
+	protected <T> T getService( Class<T> serviceClass )
+	{
+		ServiceReference ref = context.getServiceReference( serviceClass );
+		return ( T )context.getService( ref );
+	}
 
 	@Test
 	public void allBundlesStart()
