@@ -12,6 +12,8 @@ import org.osgi.framework.BundleContext;
 
 import javax.inject.Inject;
 
+import java.util.Hashtable;
+
 import static com.smartbear.osgi.tests.OsgiTestUtils.assertAllBundlesActive;
 import static com.smartbear.osgi.tests.OsgiTestUtils.springDmBundles;
 import static org.ops4j.pax.exam.CoreOptions.*;
@@ -43,6 +45,12 @@ public class EnvironmentTest
 				mavenBundle( "osgi-tests", "consumer" ).versionAsInProject()
 		);
 	}
+
+	protected <T> void publishService( Class<T> serviceClass, T service, Hashtable<String, String> properties )
+	{
+		context.registerService( serviceClass, service, properties );
+	}
+
 
 	@Test
 	public void allBundlesStart()
